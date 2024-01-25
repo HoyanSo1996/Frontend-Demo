@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>jQuery快速入门</title>
+    <script type="text/javascript" src="./script/jquery-3.7.1.min.js"></script>
+</head>
+
+<script type="text/javascript">
+    /**
+     * 使用原生js+dom编程, 动态绑定
+     * 1. 当页面加载完毕后，就执行 function
+     * 2. 绑定点击事件
+     */
+    window.onload = function () {
+        var btn01 = document.getElementById("btn01");
+        btn01.onclick = function () {
+            alert("hello, js!");
+        }
+    }
+
+    /**
+     * 使用jQuery编程
+     * 1. 引入js库
+     * 2. $(function(){}) 等价原生js的 window.onload = function(){}
+     * 3. 在jQuery编程中, 
+     *    (1) 规定jQuery对象的命名以 "$" 开头(约定俗成的规定); 
+     *    (2) 获取对象的方法是 ${"#id"}, 必须在id前加有#; 
+     *    (3) $("#btn02") 底层: document.getElementById("btn02");
+     *    (4) $btn02 是一个jQuery对象(一个数组), 其实就是对dom对象的包装, 这时我们就可以使用jQuery对象的方法、事件等等 
+     */
+    $(function () { 
+        var $btn02 = $("#btn02");
+        $btn02.click(function() {
+            alert("hello, jQuery!");
+        });
+    });
+</script>
+
+<body>
+    <button id="btn01">btn01</button><br/>
+    <button id="btn02">btn02</button>
+</body>
+</html>
