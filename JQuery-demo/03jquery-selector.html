@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>jQuery选择器的优点</title>
+    <script type="text/javascript" src="./script/jquery-3.7.1.min.js"></script>
+</head>
+<script>
+    window.onload = function () {
+        // 1. DOM对象
+        var username = document.getElementById("username");
+        // alert(username.value);  //这里会报错, Cannot read properties of null
+        // 如果希望DOM对象可以处理null
+        if (username) {
+            console.log("username value=" + username.value);
+        } else {
+            console.log("没有获取到对应id的DOM对象");
+        }
+
+
+        // 2. jQuery对象
+        // 如果没有获取到，调用 val() , 并不会报错, 对程序的健壮性
+        var $username = $("#username");
+        console.log($username.val());   // 这里不会报错, 提示 undefined
+    }
+</script>
+
+<body>
+    用户名：<input type="text" id="username1" name="username" value="张三" />
+</body>
+
+</html>
