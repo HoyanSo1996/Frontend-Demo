@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>DOM对象和jQuery对象转换</title>
+    <script type="text/javascript" src = "./script/jquery-3.7.1.min.js"></script>
+</head>
+
+<script type="text/javascript">
+    window.onload = function() {
+        // 1.将DOM对象转换成jQuery对象
+        var username = document.getElementById("username");
+        console.log("username = " + username.value);
+        var $username = $(username);
+        console.log("$username = " + $username.val());
+
+            
+        console.log("-------------------");
+        // 2.将jQuery对象转换成DOM对象
+        $password = $("#password");
+        console.log("$password = " + $password.val());
+        // 方式一：
+        // var password = $password[0];
+        // console.log("password = " + password.value);
+        // 方式二：
+        var password = $password.get(0);
+        console.log("password = " + password.value);
+    }
+</script>
+
+<body>
+用户名：<input type="text" id="username" name="username" value="张三"/>
+密  码： <input type="password" id="password" name="password" value="123456"/>
+</body>
+</html>
