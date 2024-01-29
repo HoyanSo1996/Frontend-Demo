@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>表单选择器-应用实例</title>
+    <script type="text/javascript" src="./js/jquery-3.7.1.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            // 得到所有 button 的数量
+            alert("按钮的总数 = " + $(":button").length);
+            
+            // 得到元素为 input type='button' 按钮的数量
+            alert("元素为 input type='button'的数量" + $("input[type='button']").length);
+
+            // 得到元素为 button 按钮的数量
+            alert("元素为 button 按钮的数量" + $("button").length);
+        });
+    </script>
+</head>
+
+<body>
+    <form>
+        <input type="text" /><br />
+        <input type="checkbox" /><br />
+        <input type="radio" /><br />
+        <input type="image" src="./image/1.webp" height="100" /><br />
+        <input type="file" /><br />
+        <input type="submit" /><br />
+        <input type="reset" /><br />
+        <input type="password" /><br />
+        <input type="button" value="按钮 1" /><br />
+        <select>
+            <option></option>
+        </select><br />
+        <textarea></textarea><br />
+        <button>按钮 2</button>
+        <button>按钮 3</button>
+        <br />
+    </form>
+</body>
+
+</html>

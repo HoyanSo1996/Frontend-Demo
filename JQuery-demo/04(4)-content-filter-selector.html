@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>内容过滤选择器-应用实例</title>
+    <link rel="stylesheet" type="text/css" href="./css/selector.css" />
+    <script type="text/javascript" src="./js/jquery-3.7.1.min.js"></script>
+</head>
+
+<script type="text/javascript">
+    $(function () {
+        // 1. 改变含有文本 ‘di’ 的 div 元素的背景色为 black
+        $("#b1").click(
+            function() {
+                $("div:contains('di')").css("background", "black");
+            }
+        );
+
+        // 2. 改变不包含子元素(或者文本元素) 的 div 的背景色为 pink
+        $("#b2").click(
+            function() {
+                $("div:empty").css("background", "pink");
+            }
+        );
+        
+        // 3. 改变含有子元素(或者文本元素)的 div 元素的背景色为 yellow
+        $("#b3").click(
+            function() {
+                $("div:parent").css("background", "yellow");
+            }
+        );
+
+        // 4. 改变含有 class 为 mini 元素的 div 元素的背景色为 green
+        $("#b4").click(
+            function() {
+                $("div:has(.mini)").css("background", "green");
+            }
+        );
+        
+
+        // 5. 改变不含有文本 di; 的 div 元素的背景色 pink
+        $("#b5").click(
+            function() {
+                $("div:not(:contains('di'))").css("background", "pink");
+            }
+        );
+    
+    });
+</script>
+
+<body>
+    <input type="button" value="改变含有文本 ‘di’ 的 div 元素的背景色为 black" id="b1" />
+    <input type="button" value="改变不包含子元素(或者文本元素) 的 div 的背景色为 pink" id="b2" />
+    <input type="button" value=" 改变含有子元素(或者文本元素)的 div 元素的背景色为 yellow" id="b3" />
+    <input type="button" value=" 改变含有 class 为 mini 元素的 div 元素的背景色为 green" id="b4" />
+    <input type="button" value=" 改变不含有文本 di; 的 div 元素的背景色 pink" id="b5" />
+    <hr />
+    <div id="xxxx">
+        <div id="one" class="mini">
+            div id 为 one
+        </div>
+    </div>
+    <div id="two">
+        div id 为 two
+        <div id="two01">
+            id two01
+        </div>
+        <div id="two02">
+            id two02
+        </div>
+    </div>
+    <div id="three" class="one">
+        div id 为 three class one
+        <div id="three01">
+            id three01
+        </div>
+    </div>
+    <div id="four" class="one">
+        XXXXXXXXXX
+    </div>
+    <div id="five" class="one"></div>
+    <div id="mover">
+        执行动画
+    </div>
+</body>
+</html>

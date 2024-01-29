@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>可见度过滤选择器-应用实例</title>
+    <link rel="stylesheet" type="text/css" href="./css/selector.css" />
+    <script type="text/javascript" src="./js/jquery-3.7.1.min.js"></script>
+</head>
+
+<script type="text/javascript">
+    $(function () {
+        // 1. 改变所有可见的 div 元素的背景色为 #0000FF
+        $("#b1").click(
+            function () {
+                $("div:visible").css("background", "#0000FF");
+            }
+        );
+
+        // 2. 选取所有不可见的 div 元素, 利用 jQuery 中的 show() 方法将它们显示出来, 并设置其背景色为 #0000FF
+        $("#b2").click(
+            function () {
+                $("div:hidden").css("background", "#0000FF").show();
+            }
+        );
+
+        // 3. 选取所有的文本隐藏域, 并打印它们的值
+        $("#b3").click(
+            function() {
+                // 获取jQuery对象(数组)
+                var $inputs = $("input:hidden");
+                // 方式一：使用 DOM 的for遍历
+                // for(var i = 0; i < $inputs.length; i++) {
+                //     var input = $inputs[i];
+                //     console.log("隐藏域的值 = " + input.value);
+                // }
+
+                // 方式二：使用 jQuery 的each()方法遍历
+                // 遍历时，会将 $inputs 数组的元素取出, 传给 function(){} -> this, this 是 DOM 对象
+                $inputs.each(
+                    function() {
+                        // 值是 DOM 形式
+                        console.log("隐藏域的值(DOM) = " + this.value);
+                        // 值是 jQuery 形式
+                        // console.log("隐藏域的值(jQuery) = " + $(this).val());
+                    }
+                );
+            }
+        );
+    });
+</script>
+</head>
+
+<body>
+    <input type="button" value="改变所有可见的 div 元素的背景色为 #0000FF" id="b1" /> <br /><br />
+    <input type="button" value="选取所有不可见的 div, 利用 jQuery 中的 show() 方法将它们显示出来, 并设置其背景色为 #0000FF" id="b2" /> <br /><br />
+    <input type="button" value="选取所有的文本隐藏域, 并打印它们的值" id="b3" /> <br /><br />
+    <hr />
+    <input type="hidden" value="hidden1" />
+    <input type="hidden" value="hidden2" />
+    <input type="hidden" value="hidden3" />
+    <input type="hidden" value="hidden4" />
+    <div id="one" class="visible">
+        div id 为 one
+    </div>
+    <div id="two" class="visible">
+        div id 为 two
+    </div>
+    <div id="three" class="one">
+        div id 为 three
+    </div>
+</body>
+</html>

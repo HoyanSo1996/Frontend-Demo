@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>层次选择器-应用实例</title>
+    <link rel="stylesheet" type="text/css" href="./css/selector.css" />
+    <script type="text/javascript" src="./js/jquery-3.7.1.min.js"></script>
+</head>
+
+<script type="text/javascript">
+    $(function () {
+        // 1.改变 <body> 内所有 <div> 的背景色为 #0000FF
+        $("#b1").click(
+            function () {
+                $("body div").css("background", "#0000FF");
+            }
+        );
+
+        // 2.改变 <body> 内子 <div>[第一层 div] 的背景色为 #FF0033
+        $("#b2").click(
+            function () {
+                $("body > div").css("background", "#FF0033");
+            }
+        );
+
+        // 3.改变 id 为 two 的元素后面一个兄弟 <div> 的背景色为 #0000FF
+        $("#b3").click(
+            function() {
+                $("#two + div").css("background", "#0000FF");
+            }
+        );
+
+        // 4.改变 id 为 two 的元素后面所有兄弟 <div> 的背景色为 ##0000FF
+        $("#b4").click(
+            function() {
+                $("#two ~ div").css("background", "#0000FF");
+            }
+        );
+
+        // 5.改变 id 为 two 的元素所有 <div> 兄弟元素的背景色为 #0000FF
+        $("#b5").click(
+            function() {
+                $("#two").siblings("div").css("background", "#0000FF");
+            }
+        );
+    });
+</script>
+
+<body>
+    <input type="button" value="改变 <body> 内所有 <div> 的背景色为 #0000FF" id="b1" />
+    <input type="button" value="改变 <body> 内子 <div>[第一层 div] 的背景色为 #FF0033" id="b2" />
+    <input type="button" value="改变 id 为 two 的元素后面一个兄弟 <div> 的背景色为 #0000FF" id="b3" />
+    <input type="button" value="改变 id 为 two 的元素后面所有兄弟 <div> 的背景色为 ##0000FF" id="b4" />
+    <input type="button" value="改变 id 为 two 的元素所有 <div> 兄弟元素的背景色为 #0000FF" id="b5" />
+    <hr />
+
+    <div id="one" class="mini">
+        div id 为 one
+    </div>
+
+    <div id="two">
+        div id 为 two
+        <div id="two01">
+            id two01
+        </div>
+        <div id="two02">
+            id two02
+        </div>
+    </div>
+
+    <div id="three" class="mini">
+        div id 为 three
+        <div id="three01">
+            id three01
+        </div>
+    </div>
+
+    <div id="four" class="mini">
+        div id 为 four
+        <div id="four01">
+            id four01
+        </div>
+    </div>
+</body>
+</html>

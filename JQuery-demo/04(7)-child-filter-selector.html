@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>子元素过滤选择器示例-应用实例</title>
+    <link rel="stylesheet" type="text/css" href="./css/selector.css" />
+    <script type="text/javascript" src="./js/jquery-3.7.1.min.js"></script>
+</head>
+
+<script type="text/javascript">
+    $(function () {
+        // 选取下列元素, 改变其背景色为 #0000FF
+        // 1. 每个 class 为 one 的 div 父元素下的第 2 个子元素
+        $("#b1").click(
+            function() {
+                $("div div:nth-child(2)").css("background", "#0000FF");
+            }
+        );
+
+        // 2. 每个 class 为 one 的 div 父元素下的第一个子元素
+        $("#b2").click(
+            function() {
+                $("div .one:first-child").css("background", "#0000FF");
+            }
+        );
+
+        // 3. 每个 class 为 one 的 div 父元素下的最后一个子元素
+        $("#b3").click(
+            function() {
+                $("div .one:last-child").css("background", "#0000FF");
+            }
+        );
+
+        // 4. 如果 class 为 one 的 div 父元素下的仅仅只有一个子元素，那么选中这个子元素
+        $("#b4").click(
+            function() {
+                $("div .one:only-child").css("background", "#0000FF");
+            }
+        );
+    });
+</script>
+</head>
+
+<body>
+    <input type="button" value="每个 class 为 one 的 div 父元素下的第 2 个子元素" id="b1" /><br /><br />
+    <input type="button" value="每个 class 为 one 的 div 父元素下的第一个子元素" id="b2" /><br /><br />
+    <input type="button" value="每个 class 为 one 的 div 父元素下的最后一个子元素" id="b3" /><br /><br />
+    <input type="button" value="如果 class 为 one 的 div 父元素下的仅仅只有一个子元素，那么选中这个子元素" id="b4" /><br /><br />
+    <div class="one">
+        <div id="one" class="one">
+            XXXXXXXXX id=one
+        </div>
+        <div id="two" class="one">
+            XXXXXXXXX id=two
+        </div>
+        <div id="three" class="one">
+            XXXXXXXXX id=three
+        </div>
+        <div id="four" class="one">
+            XXXXXXXXX id=four
+        </div>
+    </div>
+    <div class="one">
+        <div id="five" class="one">
+            XXXXXXXXX id=five
+        </div>
+    </div>
+</body>
+</html>
