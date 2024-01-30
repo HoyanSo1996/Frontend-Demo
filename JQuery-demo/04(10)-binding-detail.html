@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>网页中所有的 <p> 元素添加 onclick 事件</title>
+    <script type="text/javascript" src="./js/jquery-3.7.1.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            // 方式一 (批量绑定p元素, 缺点:只能绑定一样的事件)
+            // $("p").click(function () {
+            //     // 当我们点击p元素时, 会隐式的传入this(dom), 表示当前元素(所有p元素)对应的dom对象
+            //     alert("p的内容是 = " + $(this).text());
+            // });
+
+            // 方式二 (遍历所有的p元素后, 逐个绑定, 优点:可以绑定不同的事件)
+            $("p").each(function () {
+                // 遍历执行内部function, 也会隐式的传入this(dom), 此时的this表示单个p元素对应的dom对象
+                $(this).click(function() {
+                    alert("p的内容是~ = " + $(this).text());
+                });
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <h1>网页中所有的 &lt;p&gt; 元素添加 onclick 事件</h1>
+    <p>段落 1</p>
+    <p>段落 2</p>
+    <p>段落 3</p>
+</body>
+</html>
