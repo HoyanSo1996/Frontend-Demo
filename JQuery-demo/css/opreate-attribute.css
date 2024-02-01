@@ -1,0 +1,18 @@
+div {
+    width: 140px;
+    height: 140px;
+    margin: 20px;
+    float: left;
+    border: #000 1px solid;
+}
+
+.one {
+    width: 140px;
+    height: 140px;
+    margin: 20px;
+    background: #9999CC;
+    border: #000 1px solid;
+    float: left;
+    font-size: 17px;
+    font-family: Roman;
+}

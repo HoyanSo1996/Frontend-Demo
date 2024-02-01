@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>val()课堂练习</title>
+    <script type="text/javascript" src="./js/jquery-3.7.1.min.js"></script>
+    <script type="text/javascript">
+        // 设置文本框在获取焦点时, 删除默认值; 如果没输入内容, 那么失去焦点时, 就恢复默认值
+        $(function () {
+            // 1.给 b1 绑定一个获取焦点事件
+            $("#b1").focus(function() {
+                // this.defaultValue 表示的是当前元素的value值.
+                // $() 函数中的 this 不能加双引号 ""
+                var currentValue = $(this).val();
+                if(currentValue == this.defaultValue) {
+                    $(this).val("");
+                }
+            });
+
+            // 2.给 b1 绑定一个失去焦点事件
+            $("#b1").blur(function () {
+                var currentValue = $(this).val();
+                if(currentValue == "") {
+                    $(this).val(this.defaultValue);
+                }
+            });
+        })
+    </script>
+</head>
+
+<body>
+    <input type="text" value="用户邮箱/手机号/用户名" id="b1" /><br>
+    <input type="password" value="" id="b2" /><br>
+    <input type="button" value="登陆" id="b3" />
+</body>
+</html>
