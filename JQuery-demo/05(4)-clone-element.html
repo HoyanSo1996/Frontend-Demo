@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>复制节点-应用实例</title>
+    <script type="text/javascript" src="./js/jquery-3.7.1.min.js"></script>
+    <script>
+        $(function () {
+            // 点击 p, 弹出文本信息
+            $("p").click(function () {
+                alert("段落的内容= " + $(this).text())
+            })
+
+            //克隆 p, 插入到按钮后面
+            // 1. $("p").clone() 表示克隆p元素，但是没有复制事件
+            // 2. $("p").clone(true) 表示克隆 p 元素，同时复制事件
+            $("div").after($("p").clone(true));
+        })
+    </script>
+</head>
+
+<body>
+    <p>段落 1</p>
+    <p>段落 2</p>
+    <p>段落 3</p>
+    <div>////////////////////////////////</div>
+</body>
+</html>

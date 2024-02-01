@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>创建节点-应用实例</title>
+    <script type="text/javascript" src="./js/jquery-3.7.1.min.js"></script>
+    <script type="text/javascript">
+        // 1.使用dom的传统方法
+        // 添加重庆li到上海下方
+        function test1() {
+            // (1) 创建li的dom对象
+            var myli = document.createElement("li");
+            // (2) 为li设置属性
+            myli.setAttribute("id", "cq");
+            myli.setAttribute("name", "chongqin");
+            myli.innerText = "重庆";
+            // (3) 将li添加到上海下方
+            document.getElementById("sh").append(myli);
+        }
+
+        // 2.使用jquery方法
+        $(function () {
+
+            // 添加重庆li 到上海下方
+            // 使用内部插入法(成为子元素)
+            $("#b2").click(function () {
+                // (1) 定义 li 的 jquery 对象 
+                // 方式一: 逐步添加我们的 dom 对象
+                $myli = $("<li></li>");
+                $myli.attr("id", "cq");//<li id='cq'>重庆</li>
+                $myli.attr("name", "chongqing");
+                $myli.text("重庆"); // <li>重庆</li>
+                // 方式二: 一步到位
+                // $myli = $("<li id='cq' name='chongqin'>重庆</li>");
+
+                // (2) 追加元素 
+                // 使用append, 得到的结果为  <li id="sh" name="shanghai">上海<li id='cq' name='chongqin'>重庆</li></li>
+                $("#sh").append($myli);
+                // 使用appendTo
+                // $myli.appendTo("#sh");
+            });
+
+
+            // 添加重庆li 到吉林上 !! (注意此时的吉林选项前面没有-)
+            $("#b3").click(function() {
+                $myli = $("<li id='cq' name='chongqin'>重庆</li>");
+                // 使用prepend, 得到的结果为 <li id="sh" name="shanghai"><li id='cq' name='chongqin'>重庆</li>上海</li>
+                // $("#sh").prepend($myli);
+                // 使用prependTo
+                $myli.prependTo("#sh");
+            });
+
+
+            // 使用外部插入法(成为兄弟元素)
+            // 添加成都 li 到 北京下
+            $("#b4").click(function() {
+                $myli = $("<li id='cd' name='chengdu'>成都</li>");
+                // 使用 after
+                // $("#bj").after($myli);
+                // 使用 insertAfter
+                $myli.insertAfter($("#bj"));
+            });
+
+
+            // 添加成都 li 到 北京上
+            $("#b5").click(function() {
+                $myli = $("<li id='cd' name='chengdu'>成都</li>");
+                // 使用 before
+                // $("#bj").before($myli);
+                // 使用 insertBefore
+                $myli.insertBefore($("#bj"));
+            });
+        })
+    </script>
+</head>
+
+<body>
+    <ul id="city">
+        <li id="bj" name="beijing">北京</li>
+        <li id="sh" name="shanghai">上海</li>
+        <li id="jl" name="jilin">吉林</li>
+        <li id="my" name="mianyang">绵阳</li>
+    </ul>
+    <input type="button" id="b1" onclick="test1()" value="添加重庆 li 到 上海下(使用 dom 的传统方法)" /><br /><br />
+    <input type="button" id="b2" value="添加重庆 li 到 上海下 (使用 append|appendTo)" /><br /><br />
+    <input type="button" id="b3" value="添加重庆 li 到 上海上 (使用 prepend|prependTo)" /><br /><br />
+    <input type="button" id="b4" value="添加成都 li 到 北京下 (使用 after|insertAfter)" /><br /><br />
+    <input type="button" id="b5" value="添加成都 li 到 北京上 (使用 before|insertBefore)" /><br /><br />
+</body>
+</html>

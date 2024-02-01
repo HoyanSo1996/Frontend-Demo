@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>删除节点-应用实例</title>
+    <script type="text/javascript" src="./js/jquery-3.7.1.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            // 1.删除所有 p
+            $("#b1").click(function () {
+                $("p").remove();
+            });
+
+            // 2.所有p清空
+            $("#b2").click(function () {
+                $("p").empty();
+            });
+
+            // 3.删除p1
+            $("#b3").click(function () {
+                $("#p1").remove();
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <p id="p1">Hello</p> how are <p id="p2">you?</p>
+    <p name="test">Hello, <span>Person</span> <a href="#">and person</a></p>
+
+    <input type="button" value="删除所有p" id="b1" />
+    <input type="button" value="所有p清空" id="b2" />
+    <input type="button" value="删除p1" id="b3" />
+</body>
+</html>
