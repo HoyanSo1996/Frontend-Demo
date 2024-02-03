@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>多选框应用</title>
+    <link rel="stylesheet" type="text/css" href="../css/multiple-select-application.css" />
+    <script type="text/javascript" src="../js/jquery-3.7.1.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            // 选中的移到右边
+            $("#add").click(function () {
+                $("#first > option:selected").appendTo($("#second"));
+            });
+
+            // 全部移动右边
+            $("#add_all").click(function () {
+                $("#first > option").appendTo($("#second"));
+            });
+
+            // 双击移到右边
+            // Tips：这里不能使用 $("#first > option") 进行绑定, 因为绑定后元素只能移到右边而不能双击移动回来
+            $("#first").dblclick(function() {
+                $("#first option:selected").appendTo($("#second"));
+            });
+
+            // 选中的移到左边
+            $("#remove").click(function() {
+                $("#second > option:selected").appendTo($("#first"));
+            });
+        
+            // 全部移动左边
+            $("#remove_all").click(function() {
+                $("#second > option").appendTo($("#first"));
+            });
+
+            // 双击移到左边
+            $("#second").dblclick(function() {
+                $("#second option:selected").appendTo($("#first"));
+            });
+        })
+    </script>
+</head>
+
+<body>
+    <div
+        style="border:1px dashed #E6E6E6;margin:50px 0px 0px 50px; width:300px; height:240px; background-color:#E6E6E6;">
+        <table width="285" height="169" cellpadding="0" cellspacing="0" style="margin:15px 0px 0px 15px;">
+            <tr>
+                <td width="126">
+                    <!--multiple="multiple" 能同时选择多个 size="10" 确定下拉选的长度-->
+                    <select name="first" size="10" multiple="multiple" class="td3" id="first">
+                        <option value="选项 1">选项 1</option>
+                        <option value="选项 2">选项 2</option>
+                        <option value="选项 3">选项 3</option>
+                        <option value="选项 4">选项 4</option>
+                        <option value="选项 5">选项 5</option>
+                        <option value="选项 6">选项 6</option>
+                        <option value="选项 7">选项 7</option>
+                        <option value="选项 8">选项 8</option>
+                    </select>
+                </td>
+                <td width="69" valign="middle">
+                    <input name="add" id="add" type="button" class="button" value="-->" />
+                    <input name="add_all" id="add_all" type="button" class="button" value="==>" />
+                    <input name="remove" id="remove" type="button" class="button" value="&lt;--" />
+                    <input name="remove_all" id="remove_all" type="button" class="button" value="&lt;==" />
+                </td>
+                <td width="127">
+                    <select name="second" size="10" multiple="multiple" class="td3" id="second">
+                        <option value="选项 9">选项 9</option>
+                    </select>
+                </td>
+            </tr>
+        </table>
+    </div>
+</body>
+
+</html>
