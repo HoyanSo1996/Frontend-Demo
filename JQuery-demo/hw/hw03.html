@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>homework01</title>
+    <script type="text/javascript" src="../js/jquery-3.7.1.min.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            $c1 = $("input[name='c1']");
+            $c2 = $("input[name='c2']");
+
+            // 全选
+            $("#b1").click(function() {
+                // X, 这么做会有问题, 当全选完后, 取消其中几个选项再点击全选, 会不生效 (这个方法底层有问题)
+                // $c2.attr("checked", true);
+
+                // 方法一:
+                // $c2.val(["足球", "篮球", "游泳", "唱歌"]);
+                
+                /* 
+                   方法二:
+                   prop("checked", true)方法：将选择的对象的 checked 属性设置为 true (不管该对象以前是否被选中)
+                   prop("checked", false)方法：将选择的对象的 checked 属性设置为 false
+                   无法使用 attr("checked", true) 和 attr("checked", false) 来替代这个方法
+                 */
+                $c2.prop("checked", true);
+            });
+
+            // 全不选
+            $("#b2").click(function() {
+                $c2.prop("checked", false);
+            });
+
+            // 反选
+            $("#b3").click(function() {
+                $c2.each(function() {
+                    // 不能使用 attr() 方法来判断是否被选中！
+                    if(this.checked) {
+                        $(this).prop("checked", false);
+                    } else {
+                        $(this).prop("checked", true);
+                    }
+                });
+            });
+
+            // 全选/全不选
+            $c1.click(function() {
+                if(this.checked) {
+                    $c2.prop("checked", true);
+                } else {
+                    $c2.prop("checked", false);
+                }
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <p>请选择您的爱好!</p> 
+    <input type="checkbox" name="c1" value="">全选/全不选</input><br/>
+
+    <input type="checkbox" name="c2" value="足球">足球
+    <input type="checkbox" name="c2" value="篮球">篮球
+    <input type="checkbox" name="c2" value="游泳">游泳
+    <input type="checkbox" name="c2" value="唱歌">唱歌
+    <br/>
+
+    <button id="b1">全  选</button>
+    <button id="b2">全不选</button>
+    <button id="b3">反  选</button>
+    <button id="b4">提  交</button>
+</body>
+</html>

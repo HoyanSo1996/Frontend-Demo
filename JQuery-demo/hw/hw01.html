@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>homework01</title>
+    <script type="text/javascript" src="../js/jquery-3.7.1.min.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            $("#b1").click(function() {
+                alert("选中的个数 = " + $("input[name='sports']:checked").length);
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <input type="checkbox" name="sports" value="排球">排球
+    <input type="checkbox" name="sports" value="篮球">篮球
+    <input type="checkbox" name="sports" value="羽毛球">羽毛球
+    <input type="checkbox" name="sports" value="兵乓球">兵乒球
+    <button id="b1">选中的个数</button>
+</body>
+
+</html>

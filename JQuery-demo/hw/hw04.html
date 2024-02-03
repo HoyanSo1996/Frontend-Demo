@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>使用 JQuery 实现动态添加用户效果</title>
+    <script type="text/javascript" src="../js/jquery-3.7.1.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            /**
+             * 1.在表格后添加数据功能
+             *   要在table的<tbody>后追加以下子元素
+             *   <tr>
+             *       <td>Jerry</td>
+             *       <td>jerry@sohu.com</td>
+             *       <td>8000</td>
+             *       <td><a id="Jerry" href="deleteEmp?id=Jerry">Delete</a></td>
+             *   </tr>
+             */
+            $("#addUser").click(function () {
+                // (1)获取输入值
+                var username = $("#name").val();
+                var email = $("#email").val();
+                var tel = $("#tel").val();
+                $del = $("<a>Delete</a>")
+                    .attr("id", username)
+                    .attr("href", "deleteEmp?id=" + username);
+
+                // (2)为Delete元素绑定删除事件 
+                //    2.1 这里不能使用$("a")进行绑定, 否则会造成一个元素有多次绑定, 从而有多次确认弹窗
+                //    2.2 不能把绑定事件放在(4)后面, 否则会造成<a>标签绑定不上事件
+                $(del).click(function () {
+                    // Tips: 在跳转页面标签上绑定事件后，可以使用return true/false来控制是否停留在原页面
+                    return deleteUser($(del));
+                });
+
+                // (3)构建子元素
+                var element = "<tr>" +
+                    "<td>" + username + "</td>" +
+                    "<td>" + email + "</td>" +
+                    "<td>" + tel + "</td>" +
+                    "<td>" + $del[0].outerHTML + "</td>"
+                "</tr>";
+
+                // (4)将子元素追加到表的tbody后
+                $("#usertable > tbody").append($(element));
+            });
+
+            // 2.将初始化的用户，也绑定删除的事件
+            $("a").click(function () {
+                return deleteUser($(this));
+            })
+        })
+
+        /**
+         * 点击删除超链接, 实现删除某个用户的功能
+         */
+        function deleteUser($a) {
+            // 弹出确认的对话框
+            var flag = window.confirm("确认删除要" + $a.attr("id") + "用户信息吗?");
+            if (!flag) {
+                return false;
+            }
+            // 删除<a>父元素的父元素
+            $a.parent().parent().remove();
+            return false;
+        }
+    </script>
+</head>
+
+<body>
+    <center>
+        <br><br>
+        添加用户:<br><br>
+        姓名: <input type="text" name="name" id="name" />&nbsp;&nbsp;
+        email: <input type="text" name="email" id="email" />&nbsp;&nbsp;
+        电话: <input type="text" name="tel" id="tel" /><br><br>
+        <button id="addUser">提交</button>
+        <br><br>
+        <hr>
+
+        <br><br>
+        <table id="usertable" border="1" cellpadding="5" cellspacing=0>
+            <tbody>
+                <tr>
+                    <th>姓名</th>
+                    <th>email</th>
+                    <th>电话</th>
+                    <th>&nbsp;</th>
+                </tr>
+                <tr>
+                    <td>Tom</td>
+                    <td>tom@tom.com</td>
+                    <td>5000</td>
+                    <td><a id="Tom" href="deleteEmp?id=Tom">Delete</a></td>
+                </tr>
+                <tr>
+                    <td>Jerry</td>
+                    <td>jerry@sohu.com</td>
+                    <td>8000</td>
+                    <td><a id="Jerry" href="deleteEmp?id=Jerry">Delete</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </center>
+</body>
+</html>

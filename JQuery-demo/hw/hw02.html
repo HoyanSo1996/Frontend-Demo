@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>homework02</title>
+    <script type="text/javascript" src="../js/jquery-3.7.1.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            // 使表单下拉框的2号被选中
+            $("#b1").click(function () {
+                // 方法一:
+                // 在选中2号之前, 要先清空所有子元素的selected属性, 否则前端页面在点击第二第三次按钮后会无反应, 
+                // 因为此时有多个子元素被选中, 无法进行跳转
+                // $("#s1").children().removeAttr("selected");
+                // $("#s1 > option[value='2 号']").attr("selected", "selected");
+
+                // 方法二: (比较简单)
+                $("#s1").val("2 号");
+            });
+
+
+            // 使多选下拉框选中的2号和5号被选中
+            $("#b2").click(function () {
+                // 方法一:
+                // $("#s2").children().removeAttr("selected");
+                // $("#s2 > option[value='2 号']").attr("selected", "selected");
+                // $("#s2 > option[value='5 号']").attr("selected", "selected");
+
+                // 方法二: (jQuery的val()方法底层是一个数组)
+                $("#s2").val(["2 号", "5 号"]);
+
+                $("#s2 option:selected").each(function () {
+                    console.log("被选中的选项 = " + $(this).text());
+                });
+            });
+
+
+            // 使复选框中的复选2和复选4被选中
+            $("#b3").click(function () {
+                // 方法一：
+                // 不能使用$("input[name='c']").removeAttr("checked")   >>>不知怎么解决!<<<
+                // $("input[name='c']").eq(1).attr("checked", "checked");
+                // $("input[name='c']").eq(3).attr("checked", "checked");
+
+                // 方法二： (=====> 能初始化 <=====)
+                $("input[name='c']").val(["复选2", "复选4"]);
+            });
+
+
+            // 使单选框中的单选2被选中
+            $("#b4").click(function () {
+                // Tips: 这里要使用数组
+                $("input[name='r']").val(["单选2"]);
+            });
+
+
+            // 打印所有被选中的值
+            $("#b5").click(function () {
+                $("#s1 option:selected").each(function () {
+                    console.log("s1 的选项 = " + $(this).text());
+                });
+
+                $("#s2 option:selected").each(function () {
+                    console.log("s2 的选项 = " + $(this).text());
+                });
+
+                $("input[name='c']:checked").each(function () {
+                    console.log("s3 的选项 = " + $(this).val());
+                });
+
+                $("input[name='r']:checked").each(function () {
+                    console.log("s4 的选项 = " + $(this).val());
+                });
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <button id="b1">使表单下拉框的2号被选中</button><br /><br />
+    <button id="b2">使多选下拉框选中的2号和5号被选中</button><br /><br />
+    <button id="b3">使复选框中的复选2和复选4被选中</button><br /><br />
+    <button id="b4">使单选框中的单选2被选中</button><br /><br />
+    <button id="b5">打印所有被选中的值</button><br /><br />
+    <br />
+
+    <select id="s1">
+        <option value="1 号">1 号</option>
+        <option value="2 号">2 号</option>
+        <option value="3 号">3 号</option>
+    </select>
+
+    <select id="s2" multiple="multiple" size="7">
+        <option value="1 号">1 号</option>
+        <option value="2 号">2 号</option>
+        <option value="3 号">3 号</option>
+        <option value="4 号">4 号</option>
+        <option value="5 号">5 号</option>
+        <option value="6 号">6 号</option>
+    </select>
+    <br /><br />
+
+    <input type="checkbox" name="c" value="复选1"> 复选1
+    <input type="checkbox" name="c" value="复选2"> 复选2 
+    <input type="checkbox" name="c" value="复选3"> 复选3 
+    <input type="checkbox" name="c" value="复选4"> 复选4 
+    <br />
+
+    <input type="radio" name="r" value="单选1"> 单选1 
+    <input type="radio" name="r" value="单选2"> 单选2 
+    <input type="radio" name="r" value="单选3"> 单选3 
+
+</body>
+
+</html>
